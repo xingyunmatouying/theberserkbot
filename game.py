@@ -1,4 +1,5 @@
 import asyncio
+import berserk
 from typing import Any
 
 from api import API
@@ -38,6 +39,9 @@ class Game:
             return
 
         await chatter.send_greetings()
+
+        if info.tournament_id is Arena:
+            berserk.board.go_berserk
 
         if lichess_game.is_our_turn:
             await self._make_move(lichess_game, chatter)

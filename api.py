@@ -1,4 +1,5 @@
 import asyncio
+import berserk
 import json
 import logging
 import time

@@ -8,6 +8,8 @@ from chatter import Chatter
 from config import Config
 from lichess_game import Lichess_Game
 
+session = berserk.TokenSession(BOT_TOKEN)
+client = berserk.Client(session=session)
 
 class Game:
     def __init__(self, api: API, config: Config, username: str, game_id: str) -> None:
@@ -40,8 +42,10 @@ class Game:
 
         await chatter.send_greetings()
 
-        if info.tournament_id is Arena:
-            berserk.board.go_berserk
+        try:
+            client.board.go_berserk
+        except:
+            print('Error')
 
         if lichess_game.is_our_turn:
             await self._make_move(lichess_game, chatter)

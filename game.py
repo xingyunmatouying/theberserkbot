@@ -11,6 +11,11 @@ from lichess_game import Lichess_Game
 session = berserk.TokenSession('BOT_TOKEN')
 client = berserk.Client(session=session)
 
+try:
+    client.board.go_berserk
+except:
+    print('Error')
+
 class Game:
     def __init__(self, api: API, config: Config, username: str, game_id: str) -> None:
         self.api = api
@@ -32,7 +37,10 @@ class Game:
         lichess_game = await Lichess_Game.acreate(self.api, self.config, self.username, info)
         chatter = Chatter(self.api, self.config, self.username, info, lichess_game)
 
+        
+
         self._print_game_information(info)
+        
 
         if info.state["status"] != "started":
             self._print_result_message(info.state, lichess_game, info)
@@ -41,11 +49,6 @@ class Game:
             return
 
         await chatter.send_greetings()
-
-        try:
-            client.board.go_berserk
-        except:
-            print('Error')
 
         if lichess_game.is_our_turn:
             await self._make_move(lichess_game, chatter)

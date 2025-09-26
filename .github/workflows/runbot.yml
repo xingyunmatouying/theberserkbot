@@ -34,7 +34,7 @@ jobs:
       
       - name: Replace token 2
         run: |
-          sed -i 's|BOT_TOKEN|${{ secrets.BOT_TOKEN }}|g' game.py
+          sed -i 's|'BOT_TOKEN'|${{ secrets.BOT_TOKEN }}|g' game.py
 
       - name: Run bot
         env:

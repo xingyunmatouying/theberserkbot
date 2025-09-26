@@ -8,7 +8,7 @@ from chatter import Chatter
 from config import Config
 from lichess_game import Lichess_Game
 
-session = berserk.TokenSession(BOT_TOKEN)
+session = berserk.TokenSession('BOT_TOKEN')
 client = berserk.Client(session=session)
 
 class Game:

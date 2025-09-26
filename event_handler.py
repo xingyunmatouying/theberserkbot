@@ -1,4 +1,5 @@
 import asyncio
+import berserk
 from typing import Any
 
 from api import API
@@ -40,6 +41,10 @@ class Event_Handler:
                     print(128 * "‾")
                 case "gameStart":
                     self.game_manager.on_game_started(event["game"])
+                    try:
+                      client.board.go_berserk
+                    except:
+                      print('Error')
                 case "gameFinish":
                     continue
                 case "challengeDeclined":
